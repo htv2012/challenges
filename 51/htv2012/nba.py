@@ -112,7 +112,13 @@ def avg_years_active_players_stanford():
 
 def year_with_most_drafts():
     """Return the year with the most drafts, in SQL you can use GROUP BY"""
-    return query('SELECT year, COUNT(year) AS drafts FROM players GROUP BY year ORDER BY drafts DESC LIMIT 1')
+    return query("""
+        SELECT year
+        FROM players
+        GROUP BY year
+        ORDER BY COUNT(year) DESC
+        LIMIT 1
+        """)
 
 
 def most_games_per_year_for_veterans():
